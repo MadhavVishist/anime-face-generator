@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anime Face Generator</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; }
+    img { border-radius: 10px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Anime Face Generator</h1>
+  <button onclick="generate()">🎲 Generate Face</button>
+  <div>
+    <img id="face" width="256" src="" />
+  </div>
+
+  <script>
+    async function generate() {
+      const img = document.getElementById("face");
+      img.src = 'loading.gif'; // Optional loading icon
+      const res = await fetch("/generate");
+      const blob = await res.blob();
+      img.src = URL.createObjectURL(blob);
+    }
+  </script>
+</body>
+</html>
